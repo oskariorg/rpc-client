@@ -1,23 +1,25 @@
 /**
  * Oskari RPC client
- * Version: 1.1.0
+ * Version: 1.2.0
  *
- * Changes to 1.0.0:
- * - added onReady callback to detect when we have a successful connection
- * - removed hardcoded RPC-functions that might be disabled on Oskari instance
- * - functions are now generated based on what's available in the Oskari platform the client connects to. 
-        This means you can be sure the map is listening if the client has it (after onReady-triggers).
- * - added default errorhandler to make it clear when an error happens. Used when custom errorhandler is not specified.
- * - added enableDebug(blnEnabled) to log some more info to console when enabled.
- * - Changed handleEvent to enable multiple listeners.
- * - handleEvent can no longer be used to unregister listener.
- * - Added unregisterEventHandler() for unregistering listeners (previously done with handleEvent without giving listener function).
- * - Added log() for debug logging without the need to check if window.console.log() exists
- * - function-calls can now have parameters as first argument array to allow multiple (treated as a success callback instead if type is function)
- * 
- * @return {Object}  reference to postMessage channel implementation
+ * Changes to 1.1.0:
+ * - Wrapped with UMD pattern https://github.com/umdjs/umd
  */
-;var OskariRPC = (function () {
+
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jschannel'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jschannel'));
+    } else {
+        // Browser globals (root is window)
+        root.OskariRPC = factory(root.Channel);
+    }
+}(this, function (Channel) {
     'use strict';
     return {
         connect: function (target, origin) {
@@ -42,7 +44,7 @@
             var RPC_API = {};
 
             /**
-             * API 
+             * API
              * @param  {[type]} blnEnabled [description]
              * @return {[type]}            [description]
              */
@@ -55,12 +57,12 @@
                     window.console.log.apply(window.console, arguments);
                 }
             };
-            
+
             var defaultErrorHandler = function() {
                 RPC_API.log('Error', arguments);
                 throw new Error('RPC call failed!');
             };
-            
+
             RPC_API.isReady = function() {
                 return ready;
             };
@@ -229,4 +231,4 @@
             return RPC_API;
         }
     };
-}());
+}));
