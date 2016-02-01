@@ -8,16 +8,17 @@ Builds on top of JSChannel fork from https://github.com/yochannah/jschannel.
 
 **1) Publish a map from an Oskari instance**
 
-More info about oskari in http://oskari.org. A site providing Oskari published map http://www.paikkatietoikkuna.fi. 
-Publishing a map will give you an iframe html-fragment like this:
+Publishing a map will give you a html-fragment like this:
 
 ```html
-	<iframe src="http://www.mydomain.com/idofpublishedmap"></iframe>
+	<iframe src="http://www.mydomain.com/?uuid=map-identifier"></iframe>
 ```
+
+* An example site providing Oskari published map functionality with RPC: http://www.paikkatietoikkuna.fi.
+* More info about Oskari in http://oskari.org.
 
 **2) Add an id to the iframe-element and add it to your page with a script to load the rpc-client.js and to initialize the connection:**
 
-* rpc-client.min.js can be found in the dist-folder in this repository
 
 ```html
 	<iframe id="map" src="http://www.mydomain.com/idofpublishedmap"></iframe>
@@ -29,7 +30,8 @@ Publishing a map will give you an iframe html-fragment like this:
 	</script>
 ```
 
-Notice that the value of IFRAME_DOMAIN must match the domain given when the map was published (ie. where you intend to use the map).
+* `rpc-client.min.js` can be found in the `dist`-folder in this repository
+* **Notice** that the value of `IFRAME_DOMAIN` must match the domain given when the map was published (ie. where you intend to use the map).
 
 **3) onReady-function is called when the connection to the map has been established successfully.**
 
