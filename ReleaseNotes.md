@@ -1,5 +1,32 @@
 # Release notes
 
+## 2.0.0
+
+- Added JSChannel as dependency in package.json: https://github.com/yochannah/jschannel.git#f2bcb860911d36ccbc3fabd4a09f7074dd9f289e
+- Wrapped OskariRPC.js with UMD pattern https://github.com/umdjs/umd
+- OskariRPC.VERSION now returns the client version
+- channel (from OskariRPC.connect()) now has getInfo(callback, errorcb)-function. This returns generic info about Oskari as callback parameter.
+- channel (from OskariRPC.connect()) now has isSupported()-function. This returns a boolean value true if client is supported by Oskari-instance
+
+This can be used to detect that Oskari version is the one you expect.
+The developer could for example send a notification email to self for manually inspecting for any breaking API changes.
+
+	channel.onReady(function() {
+		channel.isSupported('1.35.0', function(blnSupported) {
+			if(!blnSupported) {
+				// Oskari instance is not the version you expect.
+				// There might be breaking API changes, but RPC app can work
+			}
+		});
+
+		channel.isSupported(function(blnSupported) {
+			if(!blnSupported) {
+				// fatal error - The running Oskari instance has notified that the
+				// client version is NOT supported and RPC propably won't work
+			}
+		});
+	});
+
 ## 1.1.0
 
 - added onReady callback to detect when we have a successful connection

@@ -1,27 +1,27 @@
 /**
  * Oskari RPC client
- * Version: 1.1.0
- *
- * Changes to 1.0.0:
- * - added onReady callback to detect when we have a successful connection
- * - removed hardcoded RPC-functions that might be disabled on Oskari instance
- * - functions are now generated based on what's available in the Oskari platform the client connects to. 
-        This means you can be sure the map is listening if the client has it (after onReady-triggers).
- * - added default errorhandler to make it clear when an error happens. Used when custom errorhandler is not specified.
- * - added enableDebug(blnEnabled) to log some more info to console when enabled.
- * - Changed handleEvent to enable multiple listeners.
- * - handleEvent can no longer be used to unregister listener.
- * - Added unregisterEventHandler() for unregistering listeners (previously done with handleEvent without giving listener function).
- * - Added log() for debug logging without the need to check if window.console.log() exists
- * - function-calls can now have parameters as first argument array to allow multiple (treated as a success callback instead if type is function)
- * 
- * @return {Object}  reference to postMessage channel implementation
+ * Version: 2.0.0
  */
-;var OskariRPC = (function () {
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jschannel'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jschannel'));
+    } else {
+        // Browser globals (root is window)
+        root.OskariRPC = factory(root.Channel);
+    }
+}(this, function (JSChannel) {
     'use strict';
+    var rpcClientVersion = '2.0.0';
     return {
+        VERSION : rpcClientVersion,
         connect: function (target, origin) {
-            if (Channel === null || Channel === undefined) {
+            if (JSChannel === null || JSChannel === undefined) {
                 throw new Error('JSChannel not found.');
             }
             if (target === null || target === undefined) {
@@ -42,7 +42,7 @@
             var RPC_API = {};
 
             /**
-             * API 
+             * API
              * @param  {[type]} blnEnabled [description]
              * @return {[type]}            [description]
              */
@@ -55,12 +55,12 @@
                     window.console.log.apply(window.console, arguments);
                 }
             };
-            
+
             var defaultErrorHandler = function() {
                 RPC_API.log('Error', arguments);
                 throw new Error('RPC call failed!');
             };
-            
+
             RPC_API.isReady = function() {
                 return ready;
             };
@@ -145,7 +145,7 @@
                     }
                 }
                 eventHandlers[eventName] = remainingHandlers;
-                // if last handler -> 
+                // if last handler ->
                 if(!remainingHandlers.length) {
                     channel.unbind(eventName);
                     // unregister listening to event
@@ -154,7 +154,7 @@
                         params: [eventName, false],
                         success: function () { return undefined; },
                         error: defaultErrorHandler
-                    }); 
+                    });
                 }
             };
 
@@ -184,6 +184,12 @@
                  * @param {function} error   Error handler
                  */
                 RPC_API[name] = function (params, success, error) {
+                    if(name === 'getInfo') {
+                        // hide params from external getInfo calls
+                        error = success;
+                        success = params;
+                        params = [rpcClientVersion];
+                    }
                     if(typeof params === 'function') {
                         error = success;
                         success = params;
@@ -197,7 +203,39 @@
                     });
                 };
             };
-            var channel = Channel.build({
+            var info;
+            RPC_API.isSupported = function(expectedOskariVersion, callback) {
+                if(typeof expectedOskariVersion === "function") {
+                    callback = expectedOskariVersion;
+                    expectedOskariVersion = null;
+                }
+                if(typeof callback !== 'function') {
+                    callback = function(bln) {
+                        RPC_API.log('Callback function for isSupported() not provided. Client supported: ' + bln);
+                    };
+                }
+                var handle = function(oskariInfo) {
+                    info = oskariInfo;
+                    var supported = oskariInfo.clientSupported;
+                    if(expectedOskariVersion) {
+                        supported = supported && oskariInfo.version === expectedOskariVersion;
+                    }
+                    callback(supported);
+                };
+
+                if(info) {
+                    handle(info);
+                } else if(typeof RPC_API.getInfo === 'function') {
+                    RPC_API.getInfo(handle);
+                }
+                else if (ready) {
+                    callback(false);
+                }
+                else {
+                    throw new Error('Map not connected yet');
+                }
+            };
+            var channel = JSChannel.build({
                 window: target.contentWindow,
                 origin: origin,
                 scope: 'Oskari',
@@ -229,4 +267,4 @@
             return RPC_API;
         }
     };
-}());
+}));
