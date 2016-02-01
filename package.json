@@ -15,7 +15,7 @@
     "RPC"
   ],
   "author": "NLS Finland",
-  "license": "MIT/EUPL",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nls-oskari/rpc-client/issues"
   },
