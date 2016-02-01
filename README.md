@@ -4,21 +4,9 @@ Client library for interacting with Oskari.org embedded maps
 
 Builds on top of JSChannel fork from https://github.com/adtile/jschannel.
 
-## Building the dist packages
-
-1. Run
-
-	npm install
-
-2. Run
-
-	npm run build
-
-3. Find the updated rpc-client.js and rpc-client.min.js in dist-folder.
-
 ## Usage
 
-1. Publish a map from an Oskari instance (oskari.org) like http://www.paikkatietoikkuna.fi. 
+### 1) Publish a map from an Oskari instance (oskari.org) like http://www.paikkatietoikkuna.fi. 
 
 Publishing a map will give you an iframe html-fragment like this:
 
@@ -26,7 +14,9 @@ Publishing a map will give you an iframe html-fragment like this:
 	<iframe src="http://www.mydomain.com/idofpublishedmap"></iframe>
 ```
 
-2. Add an id to the iframe-element and add it to your page with a script to load the rpc-client.js and to initialize the connection:
+### 2) Add an id to the iframe-element and add it to your page with a script to load the rpc-client.js and to initialize the connection:
+
+* rpc-client.min.js can be found in the dist-folder in this repository
 
 ```html
 	<iframe id="map" src="http://www.mydomain.com/idofpublishedmap"></iframe>
@@ -40,7 +30,7 @@ Publishing a map will give you an iframe html-fragment like this:
 
 Notice that the value of IFRAME_DOMAIN must match the domain given when the map was published (ie. where you intend to use the map).
 
-3. onReady-function is called when the connection to the map has been established successfully.
+### 3) onReady-function is called when the connection to the map has been established successfully.
 
 You can get additional information and check that the client version you are using is supported by the running Oskari-instance when connected:
 
@@ -72,7 +62,7 @@ You can get additional information and check that the client version you are usi
 	});
 ```
 
-4. After this you can start using the API.
+### 4) After this you can start using the API.
 
 You can check supported features in the Oskari-instance you are using:
 
@@ -90,7 +80,7 @@ You can check supported features in the Oskari-instance you are using:
 	});
 
 	// supported functions can also be detected by
-	if( typeof channel.getAllLayers === 'function') {
+	if (typeof channel.getAllLayers === 'function') {
 		channel.getAllLayers(function(layers) {
 			channel.log('Available layers', layers);
 		});
@@ -103,3 +93,17 @@ You can check supported features in the Oskari-instance you are using:
 
 You can find the API documentation including an API changelog in https://github.com/nls-oskari/oskari/tree/develop/api.
 Also more information can be found in oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
+
+## npm support
+
+You can also get the client as an npm dependency for you app with:
+
+	npm install oskari-rpc --save
+
+## Building the dist packages
+
+1. Run `npm install`
+
+2. Run `npm run build`
+
+3. Find the updated `rpc-client.js` and `rpc-client.min.js` in `dist`-folder.
