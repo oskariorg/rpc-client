@@ -1,11 +1,7 @@
 /**
  * Oskari RPC client
- * Version: 1.2.0
- *
- * Changes to 1.1.0:
- * - Wrapped with UMD pattern https://github.com/umdjs/umd
+ * Version: 2.0.0
  */
-
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -219,6 +215,7 @@
                     };
                 }
                 var handle = function(oskariInfo) {
+                    info = oskariInfo;
                     var supported = oskariInfo.clientSupported;
                     if(expectedOskariVersion) {
                         supported = supported && oskariInfo.version === expectedOskariVersion;

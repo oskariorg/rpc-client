@@ -2,8 +2,6 @@
 
 Client library for interacting with Oskari.org embedded maps
 
-Builds on top of JSChannel fork from https://github.com/yochannah/jschannel.
-
 ## Usage
 
 **1) Publish a map from an Oskari instance**
@@ -95,7 +93,7 @@ You can check supported features in the Oskari-instance you are using:
 * Functions can be used to get information about the map like current bounding box or zoom level.
 
 You can find the API documentation including an API changelog in https://github.com/nls-oskari/oskari/tree/develop/api.
-Also more information can be found in oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
+Also more information can be found in http://oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
 
 ## npm support
 
