@@ -2,6 +2,8 @@
 
 ## 2.0.0
 
+Requires Oskari version 1.35.0 or greater due to JSChannel update.
+
 - Added JSChannel as dependency in package.json: https://github.com/yochannah/jschannel.git#f2bcb860911d36ccbc3fabd4a09f7074dd9f289e
 - Wrapped OskariRPC.js with UMD pattern https://github.com/umdjs/umd
 - OskariRPC.VERSION now returns the client version
@@ -28,6 +30,8 @@ The developer could for example send a notification email to self for manually i
 	});
 
 ## 1.1.0
+
+Works with Oskari version 1.34.x or less.
 
 - added onReady callback to detect when we have a successful connection
 - removed hardcoded RPC-functions that might be disabled on Oskari instance - functions are now generated based on what's available in the Oskari platform the client connects to. This means you can be sure the map is listening if the client has it (after onReady-triggers).
