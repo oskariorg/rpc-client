@@ -1,5 +1,9 @@
 # Release notes
 
+## 2.0.1
+
+Updated jschannel to use v1.0.1 from https://github.com/nls-oskari/jschannel.git. Jschannel v1.0.1 version fixes errors when sending more than one parameter with null values.
+
 ## 2.0.0
 
 Requires Oskari version 1.35.0 or greater due to JSChannel update.
