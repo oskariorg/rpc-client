@@ -101,6 +101,8 @@ You can also get the client as an npm dependency for you app with:
 
 	npm install git+https://github.com/nls-oskari/rpc-client.git#v2.0.0 --save
 
+# Development tools
+
 ## Building the dist packages
 
 1. Run `npm install` to install the dependencies/build tools
@@ -108,3 +110,11 @@ You can also get the client as an npm dependency for you app with:
 2. Run `npm run build` to run the Gulp-build
 
 3. Find the updated `rpc-client.js` and `rpc-client.min.js` in `dist`-folder.
+
+## Running JSHint
+
+Run `npm run lint` to detect errors.
+
+## Running JSCS
+
+Run `npm run format` to check codestyle and fix it.
