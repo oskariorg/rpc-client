@@ -95,7 +95,7 @@ You can check supported features in the Oskari-instance you are using:
 You can find the API documentation including an API changelog in https://github.com/nls-oskari/oskari/tree/develop/api.
 Also more information can be found in http://oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
 
-## npm support
+## npm install
 
 [![oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)][npm]
 
