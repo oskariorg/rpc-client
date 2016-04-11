@@ -97,7 +97,7 @@ Also more information can be found in http://oskari.org and http://oskari.org/ex
 
 ## npm install
 
-[![oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)][npm]
+![npm install oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)
 
 # Development tools
 
