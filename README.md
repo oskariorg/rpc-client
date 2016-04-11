@@ -97,9 +97,7 @@ Also more information can be found in http://oskari.org and http://oskari.org/ex
 
 ## npm support
 
-You can also get the client as an npm dependency for you app with:
-
-	npm install git+https://github.com/nls-oskari/rpc-client.git#v2.0.0 --save
+[![oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)][npm]
 
 # Development tools
 
