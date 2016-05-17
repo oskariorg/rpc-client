@@ -5,7 +5,7 @@
   "main": "OskariRPC.js",
   "scripts": {
     "build": "./node_modules/.bin/gulp",
-    "lint": "./node_modules/.bin/jshint OskariRPC.js",
+    "lint": "./node_modules/.bin/jscs -v OskariRPC.js",
     "format": "./node_modules/.bin/jscs --fix -v OskariRPC.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
