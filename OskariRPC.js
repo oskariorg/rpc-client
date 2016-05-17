@@ -18,7 +18,7 @@
 }(this, function (JSChannel) {
 
     'use strict';
-    var rpcClientVersion = '2.0.1';
+    var rpcClientVersion = '2.0.2';
     return {
         VERSION: rpcClientVersion,
         connect: function (target, origin) {
