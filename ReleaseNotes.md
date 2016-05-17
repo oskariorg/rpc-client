@@ -1,5 +1,9 @@
 # Release notes
 
+## 2.0.2
+
+Removed trailing commas and fixed jscs config/npm lint script.
+
 ## 2.0.1
 
 Updated jschannel to use v1.0.1 from https://github.com/nls-oskari/jschannel.git. Jschannel v1.0.1 version fixes errors when sending more than one parameter with null values.

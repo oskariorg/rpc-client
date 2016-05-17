@@ -673,9 +673,7 @@
                         if (seen.indexOf(obj) >= 0) {
                             throw "params cannot be a recursive data structure"
                         }
-                        if(obj) {
-                            seen.push(obj);
-                        }
+                        seen.push(obj);
 
                         if (typeof obj === 'object') {
                             for (var k in obj) {
@@ -893,7 +891,7 @@
                     params: [eventName, true],
                     success: function () { return undefined; },
 
-                    error: defaultErrorHandler,
+                    error: defaultErrorHandler
                 });
             };
 
@@ -930,7 +928,7 @@
                         params: [eventName, false],
                         success: function () { return undefined; },
 
-                        error: defaultErrorHandler,
+                        error: defaultErrorHandler
                     });
                 }
             };
@@ -949,7 +947,7 @@
                     params: [request, params],
                     success: function () { return undefined; },
 
-                    error: error || defaultErrorHandler,
+                    error: error || defaultErrorHandler
                 });
             };
 
@@ -979,7 +977,7 @@
                         method: name,
                         params: params,
                         success: success,
-                        error: error || defaultErrorHandler,
+                        error: error || defaultErrorHandler
                     });
                 };
             };
@@ -1047,11 +1045,11 @@
                         error: function () {
                             // communicate failure
                             throw new Error("Couldn't setup allowed functions");
-                        },
+                        }
                     });
-                },
+                }
             });
             return RPC_API;
-        },
+        }
     };
 }));
