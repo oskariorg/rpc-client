@@ -95,11 +95,11 @@ You can check supported features in the Oskari-instance you are using:
 You can find the API documentation including an API changelog in https://github.com/nls-oskari/oskari/tree/develop/api.
 Also more information can be found in http://oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
 
-## npm support
+## npm install
 
-You can also get the client as an npm dependency for you app with:
+![npm install oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)
 
-	npm install git+https://github.com/nls-oskari/rpc-client.git#v2.0.0 --save
+# Development tools
 
 ## Building the dist packages
 
@@ -108,3 +108,11 @@ You can also get the client as an npm dependency for you app with:
 2. Run `npm run build` to run the Gulp-build
 
 3. Find the updated `rpc-client.js` and `rpc-client.min.js` in `dist`-folder.
+
+## Running JSHint
+
+Run `npm run lint` to detect errors.
+
+## Running JSCS
+
+Run `npm run format` to check codestyle and fix it.

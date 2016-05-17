@@ -1,0 +1,9 @@
+{
+	"preset": "airbnb",
+	"disallowQuotedKeysInObjects": null,
+    "validateIndentation" : 4,
+    "validateLineBreaks" : false,
+    "requireTrailingComma": false,
+    "disallowTrailingComma": true,
+    "safeContextKeyword" : ["me", "_this"]
+}
