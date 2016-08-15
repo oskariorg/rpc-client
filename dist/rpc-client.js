@@ -673,7 +673,9 @@
                         if (seen.indexOf(obj) >= 0) {
                             throw "params cannot be a recursive data structure"
                         }
-                        seen.push(obj);
+                        if(obj) {
+                            seen.push(obj);
+                        }
 
                         if (typeof obj === 'object') {
                             for (var k in obj) {
@@ -759,7 +761,7 @@
 
 /**
  * Oskari RPC client
- * Version: 2.0.1
+ * Version: 2.0.3
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -777,7 +779,7 @@
 }(this, function (JSChannel) {
 
     'use strict';
-    var rpcClientVersion = '2.0.2';
+    var rpcClientVersion = '2.0.3';
     return {
         VERSION: rpcClientVersion,
         connect: function (target, origin) {
