@@ -761,7 +761,7 @@
 
 /**
  * Oskari RPC client
- * Version: 2.0.3
+ * Version: 2.0.4
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -779,7 +779,7 @@
 }(this, function (JSChannel) {
 
     'use strict';
-    var rpcClientVersion = '2.0.3';
+    var rpcClientVersion = '2.0.4';
     return {
         VERSION: rpcClientVersion,
         connect: function (target, origin) {

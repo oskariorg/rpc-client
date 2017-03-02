@@ -1,6 +1,6 @@
 {
   "name": "oskari-rpc",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Oskari RPC client for interacting with embedded maps",
   "main": "OskariRPC.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nls-oskari/rpc-client.git"
+    "url": "https://github.com/oskariorg/rpc-client.git"
   },
   "keywords": [
     "Oskari",
@@ -20,11 +20,11 @@
   "author": "NLS Finland",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nls-oskari/rpc-client/issues"
+    "url": "https://github.com/oskariorg/rpc-client/issues"
   },
   "homepage": "http://oskari.org",
   "dependencies": {
-    "jschannel": "git+https://github.com/nls-oskari/jschannel.git#v1.0.1"
+    "jschannel": "git+https://github.com/oskariorg/jschannel.git#v1.0.1"
   },
   "devDependencies": {
     "gulp": "3.9.0",

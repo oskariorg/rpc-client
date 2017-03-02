@@ -1,5 +1,12 @@
 # Release notes
 
+## 2.0.4
+
+This release has no functional changes.
+
+As part of Oskari becoming an OSGeo-project the repositories are relocated from under https://github.com/nls-oskari to https://github.com/oskariorg.
+ This update only updates references in package.json for jschannel fork (dependency) and the RPC-client.
+
 ## 2.0.3
 
 Pre-built files on dist updated to match the jschannel version update. Previous pre-built files still used the 1.0.0 version of jschannel. No changes to the code other than updated dist-files.
