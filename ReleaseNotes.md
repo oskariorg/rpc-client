@@ -1,5 +1,11 @@
 # Release notes
 
+## 2.0.5
+
+This release has no functional changes.
+
+Dependency "jschannel" source changed to NPM.
+
 ## 2.0.4
 
 This release has no functional changes.
