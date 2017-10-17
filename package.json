@@ -1,6 +1,6 @@
 {
   "name": "oskari-rpc",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Oskari RPC client for interacting with embedded maps",
   "main": "OskariRPC.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "http://oskari.org",
   "dependencies": {
-    "jschannel": "git+https://github.com/oskariorg/jschannel.git#v1.0.1"
+    "jschannel": "1.0.1"
   },
   "devDependencies": {
     "gulp": "3.9.0",
