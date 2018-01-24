@@ -29,7 +29,7 @@ Publishing a map will give you a html-fragment like this:
 ```
 
 * `rpc-client.min.js` can be found in the `dist`-folder in this repository
-* **Notice** that the value of `IFRAME_DOMAIN` must match the domain given when the map was published (ie. where you intend to use the map).
+* **Notice** that the value of `IFRAME_DOMAIN` must match the domain of the Oskari instance hosting the map.
 
 **3) onReady-function is called when the connection to the map has been established successfully.**
 
