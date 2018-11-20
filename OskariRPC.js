@@ -1,6 +1,6 @@
 /**
  * Oskari RPC client
- * Version: 2.0.5
+ * Version: 2.1.0
  */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -18,7 +18,7 @@
 }(this, function (JSChannel) {
 
     'use strict';
-    var rpcClientVersion = '2.0.5';
+    var rpcClientVersion = '2.1.0';
     return {
         VERSION: rpcClientVersion,
         connect: function (target, origin) {
@@ -291,6 +291,32 @@
                 }
             });
             return RPC_API;
+        },
+        synchronizerFactory: function (channel, handlers) {
+            var latestState = null;
+            function synchronizeAll (state) {
+                for (var i = 0; i < handlers.length; ++i) {
+                    handlers[i].synchronize(channel, state);
+                }
+            }
+            channel.onReady(function () {
+                for (var i = 0; i < handlers.length; ++i) {
+                    handlers[i].init(channel);
+                }
+                if (!latestState) {
+                    return;
+                }
+                synchronizeAll(latestState);
+            });
+            return {
+                synchronize: function (state) {
+                    latestState = state;
+                    if (!channel.isReady) {
+                        return;
+                    }
+                    synchronizeAll(state);
+                }
+            }
         }
     };
 }));
