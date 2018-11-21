@@ -315,6 +315,14 @@
                         return;
                     }
                     synchronizeAll(state);
+                },
+                destroy: function () {
+                    for (var i = 0; i < handlers.length; ++i) {
+                        if (typeof handlers[i].destroy === 'function') {
+                            handlers[i].destroy();
+                        }
+                    }
+                    channel.destroy();
                 }
             }
         }
