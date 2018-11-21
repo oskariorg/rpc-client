@@ -292,39 +292,47 @@
             });
             return RPC_API;
         },
+
         synchronizerFactory: function (channel, handlers) {
             var latestState = null;
-            function synchronizeAll (state) {
+            function synchronizeAll(state) {
                 for (var i = 0; i < handlers.length; ++i) {
                     handlers[i].synchronize(channel, state);
                 }
             }
+
             channel.onReady(function () {
                 for (var i = 0; i < handlers.length; ++i) {
                     handlers[i].init(channel);
                 }
+
                 if (!latestState) {
                     return;
                 }
+
                 synchronizeAll(latestState);
             });
+
             return {
                 synchronize: function (state) {
                     latestState = state;
                     if (!channel.isReady) {
                         return;
                     }
+
                     synchronizeAll(state);
                 },
+
                 destroy: function () {
                     for (var i = 0; i < handlers.length; ++i) {
                         if (typeof handlers[i].destroy === 'function') {
                             handlers[i].destroy();
                         }
                     }
+
                     channel.destroy();
                 }
-            }
+            };
         }
     };
 }));
