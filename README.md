@@ -95,6 +95,40 @@ You can check supported features in the Oskari-instance you are using:
 You can find the API documentation including an API changelog in https://github.com/nls-oskari/oskari/tree/develop/api.
 Also more information can be found in http://oskari.org and http://oskari.org/examples/rpc-api/rpc_example.html
 
+## Synchronizer helper
+
+If you are using a frontend framework that is based on state changes and one way data-binding (like [React](https://reactjs.org/docs/thinking-in-react.html)), it can be hard to integrate the imperative API of oskari-rpc to your app. For this use-case oskari-rpc ships with the Synchronizer helper that simplifies app state to Oskari map state synchronization.
+
+The synchronizer is created with giving the RPC channel and an Array of handlers as arguments:
+
+```javascript
+var synchronizer = OskariRPC.synchronizerFactory(
+	OskariRPC.connect(mapHtmlElement, IFRAME_DOMAIN),
+	[handler1, handler2, ...]
+);
+```
+
+And when the app wants to update the map state it calls `synchronizer.synchronize(state)`, where `state` is the app specific state tree representing the map content/state.
+
+When the iframe is about to be unmounted, the app should call `synchronizer.destroy()` to cleanup event listeners related to the RPC channel.
+
+The handlers given in the Array above define the implementation of the synchronization. Uncoupled aspects of the map content can be implemented in separate handlers, each handler manging only a part of the Oskari map state. Handlers must implement the following interface methods:
+
+**init(channel) {...}** <br>
+Called with the RPC channel as argument immediately after the channel is ready. Good place to start listening for events etc.
+
+**synchronize(channel, state) {...}** <br>
+Called after `synchronizer.synchronize(state)` with the RPC channel and state given as arguments. This method should synchronize the Oskari map state to match the state tree given as argument. This is usually achieved by making `postRequest` calls over the channel. The handler should keep track of the Oskari map state so that it can only make the required changes to the state. Tip: using only immutable objects in the state tree greatly simplifies the synchronization logic implementatation as changes can be detected just by comparing object identity (`===`)!
+
+Optionally the handler can implement the following method:
+
+**destroy() {...}** <br>
+Called immediately before RPC channel is destroyed.
+
+### Example
+
+An example how the Synchronizer helper is used can be found in xxx
+
 ## npm install
 
 ![npm install oskari-rpc](https://nodei.co/npm/oskari-rpc.png?small=true)
