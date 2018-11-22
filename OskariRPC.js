@@ -18,6 +18,10 @@
 }(this, function (JSChannel) {
 
     'use strict';
+    function isFunction(target) {
+        return typeof target === 'function';
+    }
+
     var rpcClientVersion = '2.1.0';
     return {
         VERSION: rpcClientVersion,
@@ -294,6 +298,20 @@
         },
 
         synchronizerFactory: function (channel, handlers) {
+            if (!channel) {
+                throw new TypeError('Missing RPC channel');
+            }
+
+            if (!Array.isArray(handlers)) {
+                throw new TypeError('Argument "handlers" must be Array');
+            }
+
+            for (var i = 0; i < handlers.length; ++i) {
+                if (!isFunction(handlers[i].init) || !isFunction(handlers[i].synchronize)) {
+                    throw new TypeError('Handlers must implement methods init(channel) & synchronize(channel, state)');
+                }
+            }
+
             var latestState = null;
             function synchronizeAll(state) {
                 for (var i = 0; i < handlers.length; ++i) {
@@ -325,7 +343,7 @@
 
                 destroy: function () {
                     for (var i = 0; i < handlers.length; ++i) {
-                        if (typeof handlers[i].destroy === 'function') {
+                        if (isFunction(handlers[i].destroy)) {
                             handlers[i].destroy();
                         }
                     }
