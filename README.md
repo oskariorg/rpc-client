@@ -97,7 +97,7 @@ Also more information can be found in http://oskari.org and http://oskari.org/ex
 
 ## Synchronizer helper
 
-If you are using a frontend framework that is based on state changes and one way data-binding (like [React](https://reactjs.org/docs/thinking-in-react.html)), it can be hard to integrate the imperative API of oskari-rpc to your app. For this use-case oskari-rpc ships with the Synchronizer helper that simplifies app state to Oskari map state synchronization.
+If you are using a frontend framework that is based on reactive state change and one way data-binding (like [React](https://reactjs.org/docs/thinking-in-react.html)), it can be hard to integrate the imperative API of oskari-rpc to your app. For this use-case oskari-rpc ships with the Synchronizer helper that simplifies app state to Oskari map state synchronization.
 
 The synchronizer is created with giving the RPC channel and an Array of handlers as arguments:
 
@@ -112,7 +112,7 @@ And when the app wants to update the map state it calls `synchronizer.synchroniz
 
 When the iframe is about to be unmounted, the app should call `synchronizer.destroy()` to cleanup event listeners related to the RPC channel.
 
-The handlers given in the Array above define the implementation of the synchronization. Uncoupled aspects of the map content can be implemented in separate handlers, each handler manging only a part of the Oskari map state. Handlers must implement the following interface methods:
+The handlers given in the Array above define the implementation of the synchronization. Uncoupled aspects of the map content can be implemented in separate handlers, each handler managing only a part of the Oskari map state. Handlers must implement the following interface methods:
 
 **init(channel) {...}** <br>
 Called with the RPC channel as argument immediately after the channel is ready. Good place to start listening for events etc.
