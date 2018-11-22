@@ -1,5 +1,11 @@
 # Release notes
 
+## 2.1.0
+
+This release has no breaking changes.
+
+Added `OskariRPC.synchronizerFactory(...)` helper for creating one way data-binding for embedded Oskari maps.
+
 ## 2.0.5
 
 This release has no functional changes.
