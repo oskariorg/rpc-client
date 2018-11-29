@@ -1,0 +1,11 @@
+.app {
+  margin: 20px;
+}
+.horizontal {
+  display: flex;
+}
+
+.info {
+  display: inline-block;
+  margin: 10px 0 5px 0;
+}

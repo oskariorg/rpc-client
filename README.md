@@ -127,7 +127,7 @@ Called immediately before RPC channel is destroyed.
 
 ### Example
 
-An example how the Synchronizer helper is used can be found in xxx
+An example how the Synchronizer helper is used can be found [under examples directory](examples/react/).
 
 ## npm install
 
