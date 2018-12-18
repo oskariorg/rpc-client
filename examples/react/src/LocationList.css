@@ -1,0 +1,7 @@
+.location-list {
+    padding-left: 50px;
+}
+
+.location-list li.selected {
+    font-weight: 700;
+}

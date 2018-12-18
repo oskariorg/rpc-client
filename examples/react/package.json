@@ -1,0 +1,33 @@
+{
+  "name": "rpc-demo",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://data-ux.github.io/oskari-rpc-react",
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@turf/boolean-point-in-polygon": "^6.0.1",
+    "@turf/helpers": "^6.1.4",
+    "gh-pages": "^2.0.1",
+    "oskari-rpc": "oskariorg/rpc-client#b66b78c91021790bd1b0557888341e9f5990926a",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

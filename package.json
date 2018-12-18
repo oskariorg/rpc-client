@@ -1,6 +1,6 @@
 {
   "name": "oskari-rpc",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "Oskari RPC client for interacting with embedded maps",
   "main": "OskariRPC.js",
   "scripts": {
