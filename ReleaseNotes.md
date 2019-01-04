@@ -4,7 +4,8 @@
 
 This release has no breaking changes.
 
-Added `OskariRPC.synchronizerFactory(...)` helper for creating one way data-binding for embedded Oskari maps.
+- Added `OskariRPC.synchronizerFactory(...)` helper for creating one way data-binding for embedded Oskari maps.
+- New parameter `info` is given to `channel.onReady()` callbacks. It's an object containing two keys, `clientSupported` signifying that the RPC client version is suppoetd by the embeded map, and `version` which is the Oskari version in use in the embedded map.
 
 ## 2.0.5
 
