@@ -239,25 +239,16 @@
                         RPC_API.log('Callback function for isSupported() not provided. Client supported: ' + bln);
                     };
                 }
-
-                var handle = function (oskariInfo) {
-                    info = oskariInfo;
-                    var supported = oskariInfo.clientSupported;
-                    if (expectedOskariVersion) {
-                        supported = supported && oskariInfo.version === expectedOskariVersion;
-                    }
-
-                    callback(supported);
-                };
-
-                if (info) {
-                    handle(info);
-                } else if (typeof RPC_API.getInfo === 'function') {
-                    RPC_API.getInfo(handle);
-                } else if (ready) {
-                    callback(false);
-                } else {
+                if (!ready) {
                     throw new Error('Map not connected yet');
+                } else if (info) {
+                    var supported = info.clientSupported;
+                    if (expectedOskariVersion) {
+                        supported = supported && info.version === expectedOskariVersion;
+                    }
+                    callback(supported);
+                } else {
+                    callback(false);
                 }
             };
 
@@ -278,12 +269,26 @@
                                 __bindFunctionCall(name);
                             }
 
-                            // setup ready flag
-                            ready = true;
+                            function makeReady (onReadyInfo) {
+                                // setup ready flag
+                                ready = true;
 
-                            // call onReady listeners
-                            for (var i = 0; i < readyCallbacks.length; ++i) {
-                                readyCallbacks[i]();
+                                // call onReady listeners
+                                for (var i = 0; i < readyCallbacks.length; ++i) {
+                                    readyCallbacks[i](onReadyInfo);
+                                }
+                            }
+
+                            if (typeof RPC_API.getInfo === 'function') {
+                                RPC_API.getInfo(function (oskariInfo) {
+                                    info = oskariInfo;
+                                    makeReady({
+                                        clientSupported: info.clientSupported,
+                                        version: info.version
+                                    });
+                                });
+                            } else {
+                                makeReady();
                             }
                         },
 
