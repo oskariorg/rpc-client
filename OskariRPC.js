@@ -239,6 +239,7 @@
                         RPC_API.log('Callback function for isSupported() not provided. Client supported: ' + bln);
                     };
                 }
+
                 if (!ready) {
                     throw new Error('Map not connected yet');
                 } else if (info) {
@@ -246,6 +247,7 @@
                     if (expectedOskariVersion) {
                         supported = supported && info.version === expectedOskariVersion;
                     }
+
                     callback(supported);
                 } else {
                     callback(false);
@@ -269,7 +271,7 @@
                                 __bindFunctionCall(name);
                             }
 
-                            function makeReady (onReadyInfo) {
+                            function makeReady(onReadyInfo) {
                                 // setup ready flag
                                 ready = true;
 
