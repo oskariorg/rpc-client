@@ -1,6 +1,6 @@
 {
   "name": "oskari-rpc",
-  "version": "2.1.0",
+  "version": "2.0.5",
   "description": "Oskari RPC client for interacting with embedded maps",
   "main": "OskariRPC.js",
   "scripts": {
@@ -32,5 +32,10 @@
     "gulp-uglify": "1.5.1",
     "jscs": "^2.9.0",
     "jshint": "2.9.1"
-  }
+  },
+  "files": [
+    "OskariRPC.js",
+    "/dist/*",
+    "ReleaseNotes.md"
+  ]
 }
